@@ -1,19 +1,24 @@
 [package]
-name = "eframe_template"
-version = "0.1.0"
-authors = ["Emil Ernerfeldt <emil.ernerfeldt@gmail.com>"]
+name = "himalaya-gui"
+version = "0.0.1"
+authors = ["soywod <clement.douin@posteo.net>"]
 edition = "2021"
 rust-version = "1.65"
 
+[package.metadata.docs.rs]
+all-features = true
+
+[lib]
+name = "himalaya_gui"
 
 [dependencies]
 egui = "0.21.0"
 eframe = { version = "0.21.0", default-features = false, features = [
-    "accesskit",     # Make egui comptaible with screen readers. NOTE: adds a lot of dependencies.
-    "default_fonts", # Embed the default egui fonts.
-    "glow",          # Use the glow rendering backend. Alternative: "wgpu".
-    "persistence",   # Enable restoring app state when restarting the app.
-] }
+  # "accesskit",     # Make egui comptaible with screen readers. NOTE: adds a lot of dependencies.
+  # "default_fonts", # Embed the default egui fonts.
+  "wgpu",          # Use the glow rendering backend. Alternative: "wgpu".
+  # "persistence",   # Enable restoring app state when restarting the app.
+]}
 
 # You only need serde if you want app persistence:
 serde = { version = "1", features = ["derive"] }
@@ -35,7 +40,6 @@ opt-level = 2 # fast and small wasm
 # Optimize all dependencies even in debug builds:
 [profile.dev.package."*"]
 opt-level = 2
-
 
 [patch.crates-io]
 

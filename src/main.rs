@@ -5,13 +5,16 @@
 #[cfg(not(target_arch = "wasm32"))]
 fn main() -> eframe::Result<()> {
     // Log to stdout (if you run with `RUST_LOG=debug`).
+
+    use eframe::NativeOptions;
+
     tracing_subscriber::fmt::init();
 
-    let native_options = eframe::NativeOptions::default();
+    let native_options = NativeOptions::default();
     eframe::run_native(
-        "eframe template",
+        "Himalaya GUI",
         native_options,
-        Box::new(|cc| Box::new(eframe_template::TemplateApp::new(cc))),
+        Box::new(|cc| Box::new(himalaya_gui::TemplateApp::new(cc))),
     )
 }
 
@@ -30,7 +33,7 @@ fn main() {
         eframe::start_web(
             "the_canvas_id", // hardcode it
             web_options,
-            Box::new(|cc| Box::new(eframe_template::TemplateApp::new(cc))),
+            Box::new(|cc| Box::new(himalaya_gui::TemplateApp::new(cc))),
         )
         .await
         .expect("failed to start eframe");
