@@ -20,6 +20,18 @@ eframe = { version = "0.21.0", default-features = false, features = [
   # "persistence",   # Enable restoring app state when restarting the app.
 ]}
 
+log = "0.4"
+anyhow = "1"
+env_logger = "0.10"
+notify = "6"
+dark-light = "1"
+parking_lot = "0.12"
+ouroboros = "0.15"
+pimalaya-email = "=0.8.0"
+himalaya = { git = "https://github.com/soywod/himalaya.git" }
+simplecss = "0.2"
+css-color-parser = "0.1.2"
+
 # You only need serde if you want app persistence:
 serde = { version = "1", features = ["derive"] }
 

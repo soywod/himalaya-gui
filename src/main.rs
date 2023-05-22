@@ -1,20 +1,32 @@
 #![warn(clippy::all, rust_2018_idioms)]
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")] // hide console window on Windows in release
 
+use himalaya_gui::App;
+
 // When compiling natively:
 #[cfg(not(target_arch = "wasm32"))]
 fn main() -> eframe::Result<()> {
     // Log to stdout (if you run with `RUST_LOG=debug`).
 
-    use eframe::NativeOptions;
-
     tracing_subscriber::fmt::init();
 
-    let native_options = NativeOptions::default();
+    let options = eframe::NativeOptions {
+        renderer: eframe::Renderer::Wgpu,
+        ..eframe::NativeOptions::default()
+    };
+
     eframe::run_native(
-        "Himalaya GUI",
-        native_options,
-        Box::new(|cc| Box::new(himalaya_gui::TemplateApp::new(cc))),
+        "Himalaya",
+        options,
+        Box::new(|cc| match App::new(cc) {
+            Ok(app) => Box::new(app),
+            Err(e) => {
+                eprintln!("Error: {}", e);
+                // Only allowed here.
+                #[allow(clippy::exit)]
+                std::process::exit(1);
+            }
+        }),
     )
 }
 
