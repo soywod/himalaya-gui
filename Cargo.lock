@@ -1498,6 +1498,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "gethostname"
+version = "0.4.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0176e0459c2e4a1fe232f984bca6890e681076abb9934f6cea7c326f3fc47818"
+dependencies = [
+ "libc",
+ "windows-targets 0.48.0",
+]
+
+[[package]]
 name = "getrandom"
 version = "0.2.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1679,8 +1689,8 @@ checksum = "dfa686283ad6dd069f105e5ab091b04c62850d3e4cf5d67debad1933f55023df"
 
 [[package]]
 name = "himalaya"
-version = "0.7.3"
-source = "git+https://github.com/soywod/himalaya.git#5a2d842cbe26bf7bf2a4344d96b27dfe9fdb88e2"
+version = "0.8.0"
+source = "git+https://github.com/soywod/himalaya.git#7aff3bbf9d1bfb25cd5c5a3d232a4dda49760592"
 dependencies = [
  "anyhow",
  "atty",
@@ -2140,9 +2150,9 @@ dependencies = [
 
 [[package]]
 name = "libc"
-version = "0.2.139"
+version = "0.2.144"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "201de327520df007757c1f0adce6e827fe8562fbc28bfd9c15571c66ca1f5f79"
+checksum = "2b00cc1c228a6782d0f076e7b232802e0c5689d41bb5df366f2a6b6621cfdfe1"
 
 [[package]]
 name = "libloading"
@@ -2216,6 +2226,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c41e0c4fef86961ac6d6f8a82609f55f31b05e4fce149ac5710e439df7619ba4"
 
 [[package]]
+name = "mail-builder"
+version = "0.3.0"
+source = "git+https://github.com/stalwartlabs/mail-builder.git#7986275cd89340eef2cb18daea25ced53f51db07"
+dependencies = [
+ "gethostname 0.4.3",
+]
+
+[[package]]
 name = "mail-parser"
 version = "0.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2230,7 +2248,7 @@ version = "0.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5d2d08d52a925272eda99f8fe9e91237b1cb958804ee0628cc398ebd1bbc426f"
 dependencies = [
- "gethostname",
+ "gethostname 0.2.3",
  "mailparse",
  "memmap2",
 ]
@@ -2404,6 +2422,12 @@ dependencies = [
  "thiserror",
  "unicode-xid",
 ]
+
+[[package]]
+name = "nanohtml2text"
+version = "0.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "999681fe3c0524336e98ece1c25ee4278607f25cc1e361ad0f9201c8bf56dc2c"
 
 [[package]]
 name = "ndk"
@@ -2944,9 +2968,8 @@ dependencies = [
 
 [[package]]
 name = "pimalaya-email"
-version = "0.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6ffcfdf5fbbca7539e3d762a5c5b3b2b6fd58fc3d996b2295f094c7f394553ad"
+version = "0.9.0"
+source = "git+https://git.sr.ht/~soywod/pimalaya#491425006ad3facfe9e17f1d27d3e2f0e525161a"
 dependencies = [
  "advisory-lock",
  "ammonia",
@@ -2958,6 +2981,7 @@ dependencies = [
  "imap-proto",
  "lettre",
  "log",
+ "mail-builder",
  "mail-parser",
  "maildir",
  "mailparse",
@@ -2972,7 +2996,7 @@ dependencies = [
  "regex",
  "rfc2047-decoder",
  "rusqlite",
- "rustls 0.20.8",
+ "rustls 0.21.1",
  "rustls-native-certs",
  "shellexpand",
  "thiserror",
@@ -2985,17 +3009,15 @@ dependencies = [
 
 [[package]]
 name = "pimalaya-email-tpl"
-version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fd0a03c25c249b598bddd24a0fe1c06d044c9bb8362644792e902146c8b5b613"
+version = "0.2.0"
+source = "git+https://git.sr.ht/~soywod/pimalaya#491425006ad3facfe9e17f1d27d3e2f0e525161a"
 dependencies = [
- "ammonia",
  "chumsky 0.9.2",
- "html-escape",
- "lettre",
  "log",
+ "mail-builder",
+ "mail-parser",
+ "nanohtml2text",
  "pimalaya-process",
- "regex",
  "shellexpand",
  "thiserror",
  "tree_magic",
@@ -4999,7 +5021,7 @@ version = "0.10.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "592b4883219f345e712b3209c62654ebda0bb50887f330cbd018d0f654bfd507"
 dependencies = [
- "gethostname",
+ "gethostname 0.2.3",
  "nix 0.24.3",
  "winapi",
  "winapi-wsapoll",

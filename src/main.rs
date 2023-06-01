@@ -6,9 +6,7 @@ use himalaya_gui::App;
 // When compiling natively:
 #[cfg(not(target_arch = "wasm32"))]
 fn main() -> eframe::Result<()> {
-    // Log to stdout (if you run with `RUST_LOG=debug`).
-
-    tracing_subscriber::fmt::init();
+    env_logger::init();
 
     let options = eframe::NativeOptions {
         renderer: eframe::Renderer::Wgpu,
@@ -20,10 +18,8 @@ fn main() -> eframe::Result<()> {
         options,
         Box::new(|cc| match App::new(cc) {
             Ok(app) => Box::new(app),
-            Err(e) => {
-                eprintln!("Error: {}", e);
-                // Only allowed here.
-                #[allow(clippy::exit)]
+            Err(err) => {
+                eprintln!("Error while running native app: {}", err);
                 std::process::exit(1);
             }
         }),

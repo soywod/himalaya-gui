@@ -27,7 +27,7 @@ notify = "6"
 dark-light = "1"
 parking_lot = "0.12"
 ouroboros = "0.15"
-pimalaya-email = "=0.8.0"
+pimalaya-email = { git = "https://git.sr.ht/~soywod/pimalaya" }
 himalaya = { git = "https://github.com/soywod/himalaya.git" }
 simplecss = "0.2"
 css-color-parser = "0.1.2"
